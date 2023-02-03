@@ -1,33 +1,56 @@
 {
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack --mode development",
-    "build": "webpack --mode production",
-    "lint": "eslint --ext .js src test",
-    "precommit": "npm run lint"
+    "version": "npx webpack --version",
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "start": "pnpm dev",
+    "http": "http-server dist -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/gxuud/demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
+    "clean-webpack-plugin": "4.0.0",
+    "css-loader": "5.2.7",
+    "eslint": "^8.33.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-react": "^7.32.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "4.5.2",
+    "less": "^3.11.3",
+    "less-loader": "^6.2.0",
+    "style-loader": "2.0.0",
+    "ts-loader": "4.5.0",
+    "webpack": "4.44.2",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@babel/core": "^7.20.12",
+    "@babel/plugin-transform-react-jsx": "^7.20.13",
     "@types/react": "16.9.9",
     "@types/react-dom": "16.9.9",
-    "antd": "^5.1.7",
+    "babel-cli": "6",
+    "babel-loader": "8.2.5",
+    "babel-preset-react-app": "3",
     "dva": "^2.4.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "typescript": "^4.9.5"
   },
-  "devDependencies": {
-    "babel-plugin-dva-hmr": "^0.3.2",
-    "eslint": "^4.14.0",
-    "eslint-config-umi": "^0.1.1",
-    "eslint-plugin-flowtype": "^2.34.1",
-    "eslint-plugin-import": "^2.6.0",
-    "eslint-plugin-jsx-a11y": "^5.1.1",
-    "eslint-plugin-react": "^7.1.0",
-    "husky": "^0.12.0",
-    "redbox-react": "^1.4.3",
-    "roadhog": "^2.5.0-beta.4",
-    "ts-loader": "^9.4.2",
-    "typescript": "^4.9.5",
-    "webpack": "4.44.2",
-    "webpack-cli": "^5.0.1"
-  }
+  "sideEffects": false
 }
