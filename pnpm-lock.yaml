@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/core': ^7.20.12
   '@babel/plugin-transform-react-jsx': ^7.20.13
+  '@types/history': ^5.0.0
   '@types/lodash': ^4.14.191
   '@types/react': 16.9.9
   '@types/react-dom': 16.9.9
@@ -19,6 +20,7 @@ specifiers:
   eslint-import-resolver-alias: ^1.1.2
   eslint-plugin-react: ^7.32.2
   file-loader: ^6.2.0
+  history: ^5.3.0
   html-webpack-plugin: 4.5.2
   less: ^3.11.3
   less-loader: ^6.2.0
@@ -26,7 +28,6 @@ specifiers:
   lodash-es: ^4.17.21
   react: 16.14.0
   react-dom: 16.14.0
-  react-router-dom: ^6.8.0
   style-loader: 2.0.0
   ts-loader: 4.5.0
   typescript: ^4.9.5
@@ -43,11 +44,11 @@ dependencies:
   lodash-es: 4.17.21
   react: 16.14.0
   react-dom: 16.14.0_react@16.14.0
-  react-router-dom: 6.8.0_wcqkhtmu7mswc6yz4uyexck3ty
 
 devDependencies:
   '@babel/core': 7.20.12
   '@babel/plugin-transform-react-jsx': 7.20.13_@babel+core@7.20.12
+  '@types/history': 5.0.0
   '@types/lodash': 4.14.191
   '@types/react': 16.9.9
   '@types/react-dom': 16.9.9
@@ -62,6 +63,7 @@ devDependencies:
   eslint-import-resolver-alias: 1.1.2
   eslint-plugin-react: 7.32.2_eslint@8.33.0
   file-loader: 6.2.0_webpack@4.44.2
+  history: 5.3.0
   html-webpack-plugin: 4.5.2_webpack@4.44.2
   less: 3.13.1
   less-loader: 6.2.0_webpack@4.44.2
@@ -346,7 +348,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
-    dev: false
 
   /@babel/template/7.20.7:
     resolution: {integrity: sha512-8SegXApWe6VoNw0r9JHpSteLKTpTiLZ4rMlGIm9JQ18KiCtyQiAMEazujAHrUS5flrcqYZa75ukev3P6QmUwUw==}
@@ -565,11 +566,6 @@ packages:
       react-dom: 16.14.0_react@16.14.0
     dev: false
 
-  /@remix-run/router/1.3.1:
-    resolution: {integrity: sha512-+eun1Wtf72RNRSqgU7qM2AMX/oHp+dnx7BHk1qhK5ZHzdHTUU4LA1mGG1vT+jMc8sbhG3orvsfOmryjzx2PzQw==}
-    engines: {node: '>=14'}
-    dev: false
-
   /@types/body-parser/1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
@@ -628,8 +624,7 @@ packages:
     resolution: {integrity: sha512-hy8b7Y1J8OGe6LbAjj3xniQrj3v6lsivCcrmf4TzSgPzLkhIeKgc5IZnT7ReIqmEuodjfO8EYAuoFvIrHi/+jQ==}
     deprecated: This is a stub types definition. history provides its own type definitions, so you do not need this installed.
     dependencies:
-      history: 4.10.1
-    dev: false
+      history: 5.3.0
 
   /@types/html-minifier-terser/5.1.2:
     resolution: {integrity: sha512-h4lTMgMJctJybDp8CQrxTUiiYmedihHWkjnF/8Pxseu2S6Nlfcy8kwboQ8yejh456rP2yWoEVm1sS/FVsfM48w==}
@@ -4137,6 +4132,11 @@ packages:
       value-equal: 1.0.1
     dev: false
 
+  /history/5.3.0:
+    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
+    dependencies:
+      '@babel/runtime': 7.20.13
+
   /hmac-drbg/1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
     dependencies:
@@ -6594,19 +6594,6 @@ packages:
       warning: 4.0.3
     dev: false
 
-  /react-router-dom/6.8.0_wcqkhtmu7mswc6yz4uyexck3ty:
-    resolution: {integrity: sha512-hQouduSTywGJndE86CXJ2h7YEy4HYC6C/uh19etM+79FfQ6cFFFHnHyDlzO4Pq0eBUI96E4qVE5yUjA00yJZGQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-    dependencies:
-      '@remix-run/router': 1.3.1
-      react: 16.14.0
-      react-dom: 16.14.0_react@16.14.0
-      react-router: 6.8.0_react@16.14.0
-    dev: false
-
   /react-router-redux/5.0.0-alpha.9_react@16.14.0:
     resolution: {integrity: sha512-euSgNIANnRXr4GydIuwA7RZCefrLQzIw5WdXspS8NPYbV+FxrKSS9MKG7U9vb6vsKHONnA4VxrVNWfnMUnUQAw==}
     deprecated: This project is no longer maintained.
@@ -6632,16 +6619,6 @@ packages:
       prop-types: 15.8.1
       react: 16.14.0
       warning: 4.0.3
-    dev: false
-
-  /react-router/6.8.0_react@16.14.0:
-    resolution: {integrity: sha512-760bk7y3QwabduExtudhWbd88IBbuD1YfwzpuDUAlJUJ7laIIcqhMvdhSVh1Fur1PE8cGl84L0dxhR3/gvHF7A==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: '>=16.8'
-    dependencies:
-      '@remix-run/router': 1.3.1
-      react: 16.14.0
     dev: false
 
   /react/16.14.0:
@@ -6726,7 +6703,6 @@ packages:
 
   /regenerator-runtime/0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
-    dev: false
 
   /regenerator-transform/0.10.1:
     resolution: {integrity: sha512-PJepbvDbuK1xgIgnau7Y90cwaAmO/LCLMI2mPvaXq2heGMR3aWW5/BQvYrhJ8jgmQjXewXvBjzfqKcVOmhjZ6Q==}

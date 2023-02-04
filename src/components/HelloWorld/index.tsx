@@ -1,8 +1,9 @@
+import { Button } from "antd";
 import React from "react";
-import './index.less'
+import './index.less';
 
 const HelloWorld: React.FC = () => {
-  return <div className="hello">HelloWorld</div>
-}
+  return <Button>HelloWorld</Button>;
+};
 
 export default HelloWorld;
