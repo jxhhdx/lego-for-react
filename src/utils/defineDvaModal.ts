@@ -30,7 +30,7 @@ interface SubscriptionAPI {
 type Subscription = (api: SubscriptionAPI, done: Function) => void | Function;
 
 interface IDefaultDvaModal<State> extends Omit<Model, CustomField> {
-  state?: State;
+  state?: Partial<State>;
   effects?: EffectsMapObject<State>;
   reducers?: {
     [key: string]: (state: State, action: NewAnyAction<State>) => State;

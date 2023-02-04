@@ -1,6 +1,5 @@
-import { Model } from 'dva';
 import { GlobalDataProps } from './index';
-import defineDvaModal from '@/utils/defineDvaModal'
+import defineDvaModal from '../utils/defineDvaModal';
 
 export interface UserProps {
   isLogin: boolean;
@@ -8,11 +7,13 @@ export interface UserProps {
 }
 
 const BASE_NAMESPACE = 'user';
+
 const initState = {
   BASE_NAMESPACE,
   isLogin: false
 };
-type IState = typeof initState & UserProps;
+
+type IState = typeof initState & UserProps & GlobalDataProps;
 
 export default defineDvaModal<IState>({
   namespace: `${BASE_NAMESPACE}Modal`,
