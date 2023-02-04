@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBarPlugin = require('webpackbar');
 const aliasPath = require('./tsconfig.json').compilerOptions.paths;
 
 module.exports = {
@@ -8,9 +9,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'webpack4',
+      title: '乐高积木',
       template: 'public/index.html'
     }),
+    new WebpackBarPlugin()
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -43,7 +45,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.less$/,
+        test: /\.(less|css)$/,
         use: [
           'style-loader',
           'css-loader',
