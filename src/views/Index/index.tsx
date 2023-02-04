@@ -1,9 +1,11 @@
 import React from 'react';
 import { Layout } from 'antd';
+import { connect } from 'dva';
+import { BaseProps, mapStateToProps } from '@/views/typing';
 import './index.less';
 const { Header, Content, Footer } = Layout;
 
-const Index: React.FC = () => {
+const Index: React.FC<BaseProps> = (props) => {
   return (
     <div className="homepage-container">
       <Layout style={{ background: '#fff' }}>
@@ -24,4 +26,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default connect(mapStateToProps)(Index);

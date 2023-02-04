@@ -1,19 +1,22 @@
 import React from 'react';
-import { Button, Dropdown, Menu } from 'antd';
+import { Button, Dropdown, Menu, message } from 'antd';
 import { Link } from 'dva/router';
-import type { UserProps } from '@/models/types';
+import { connect } from 'dva';
+import { BaseProps, mapStateToProps } from '@/views/typing';
 import './index.less';
 
-type IProps = {
-  user: UserProps;
-}
-const UserProfile: React.FC<IProps> = (props) => {
-  const { user } = props;
+const UserProfile: React.FC<BaseProps> = (props) => {
+  const { user, dispatch, history } = props;
   const login = () => {
-    console.log('login');
+    dispatch({ type: 'login' });
+    message.success('登录成功', 2);
   };
   const logout = () => {
-    console.log('logout');
+    dispatch({ type: 'logout' });
+    message.success('退出登录成功，2秒后跳转到首页', 2)
+    setTimeout(() => {
+      history.push('/');
+    }, 2000)
   };
   return (
     <>
@@ -43,4 +46,4 @@ const UserProfile: React.FC<IProps> = (props) => {
   );
 };
 
-export default UserProfile;
+export default connect(mapStateToProps)(UserProfile);

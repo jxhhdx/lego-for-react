@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TemplateList from '@/components/TemplateList';
 import { connect } from 'dva';
-import type { GlobalDataProps } from '@/models';
-import type { SubscriptionAPI } from '@/typings/dva-types';
+import { BaseProps, mapStateToProps } from '@/views/typing';
 import './index.less';
 
-const Index: React.FC<GlobalDataProps & SubscriptionAPI> = (props) => {
-  const [testData] = useState([]);
+const Home: React.FC<BaseProps> = (props) => {
   return (
     <div className="content-container">
-      <TemplateList list={testData}></TemplateList>
+      <TemplateList list={props.templates.data}></TemplateList>
     </div>
   );
 };
 
-export default connect((state: GlobalDataProps) => state)(Index);
+export default connect(mapStateToProps)(Home);

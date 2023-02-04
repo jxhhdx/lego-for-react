@@ -17,7 +17,10 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
     alias: Object.keys(aliasPath).reduce((alias, key) => {
-      alias[key] = path.resolve(aliasPath[key][0]) + '';
+      const newKey = key.replace(/\/\*$/, '');
+      let newPath = path.resolve(aliasPath[key][0]) + '';
+      newPath = newPath.replace(/\/\*$/, '')
+      alias[newKey] = newPath;
       return alias;
     }, {})
   },
