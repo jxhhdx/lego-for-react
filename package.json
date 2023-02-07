@@ -1,12 +1,12 @@
 {
   "name": "demo",
   "version": "1.0.0",
-  "description": "",
+  "description": "乐高积木",
   "private": true,
   "scripts": {
     "version": "npx webpack --version",
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack-dev-server --open --config webpack.dev.js",
+    "dev": "webpack-dev-server --open --port 2333 --config webpack.dev.js",
     "start": "pnpm dev"
   },
   "repository": {

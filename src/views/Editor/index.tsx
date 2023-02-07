@@ -26,7 +26,7 @@ const Editor: React.FC = () => {
           <Content className="preview-container">
             <p>画布区域</p>
             <div className="preview-list" id="canvas-area">
-              <EditWrapper ></EditWrapper>
+              {/* <EditWrapper ></EditWrapper> */}
             </div>
           </Content>
         </Layout>

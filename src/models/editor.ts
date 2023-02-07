@@ -1,5 +1,5 @@
 import { GlobalDataProps } from './index';
-import defineDvaModal from '../utils/defineDvaModal';
+import defineDvaModal from '@/utils/defineDvaModal';
 import { TextComponentProps } from '@/defaultProps';
 import { v4 as uuidv4 } from 'uuid';
 export interface EditorProps {
@@ -28,7 +28,7 @@ const initState = {
   currentElement: '',
 }
 
-export default defineDvaModal<GlobalDataProps['editor']>({
+export default defineDvaModal<GlobalDataProps, 'editor'>({
   namespace: BASE_NAMESPACE,
   state: initState,
   subscriptions: {
@@ -45,7 +45,10 @@ export default defineDvaModal<GlobalDataProps['editor']>({
       yield put({ type: 'concat', payload: initState });
     },
     *addComponent({ payload }, { put, select }) {
-      const editor = yield select((state) => state.editor);
+      const editor: GlobalDataProps['editor'] = yield select((state) => state.editor);
+      console.log('====================================');
+      console.log(editor);
+      console.log('====================================');
       const newComponent: ComponentData = {
         id: uuidv4(),
         name: 'l-text',
@@ -58,14 +61,14 @@ export default defineDvaModal<GlobalDataProps['editor']>({
         }
       })
     },
-    *setActive(state, currentId: string) {
-      state.currentElement = currentId
+    *setActive({ payload }, { put, select }) {
+      // state.currentElement = currentId
     },
-    *updateComponent(state, { key, value }) {
-      const updatedComponent = state.components.find((component) => component.id === state.currentElement)
-      if (updatedComponent) {
-        updatedComponent.props[key as keyof TextComponentProps] = value
-      }
+    *updateComponent({ payload }, { key, value }) {
+      // const updatedComponent = state.components.find((component) => component.id === state.currentElement)
+      // if (updatedComponent) {
+      //   updatedComponent.props[key as keyof TextComponentProps] = value
+      // }
     }
   },
   reducers: {

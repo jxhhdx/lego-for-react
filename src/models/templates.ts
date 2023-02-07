@@ -1,5 +1,5 @@
 import { GlobalDataProps } from './index';
-import defineDvaModal from '../utils/defineDvaModal';
+import defineDvaModal from '@/utils/defineDvaModal';
 export interface TemplateProps {
   id: number;
   title: string;
@@ -28,8 +28,7 @@ const initState = {
   data: testData
 };
 
-type IState = typeof initState & TemplatesProps & GlobalDataProps;
-export default defineDvaModal<IState>({
+export default defineDvaModal<GlobalDataProps, typeof BASE_NAMESPACE>({
   namespace: BASE_NAMESPACE,
   state: initState,
   subscriptions: {
