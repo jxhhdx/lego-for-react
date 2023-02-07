@@ -3,7 +3,7 @@ import React from "react";
 import './index.less';
 
 const HelloWorld: React.FC = () => {
-  return <Button>HelloWorld</Button>;
+  return <div>HelloWorld</div>;
 };
 
 export default HelloWorld;

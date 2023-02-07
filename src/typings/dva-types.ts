@@ -6,11 +6,11 @@ export type Payload<T> = { payload: T } & IObj;
 
 export type AnyAction = Effect extends (...args: infer Args) => void ? Args[0] : never;
 
-export type NewAnyAction<T> = AnyAction & Payload<T>
+export type NewAnyAction = AnyAction & Payload<any>
 
 export type EffectsCommandMap = Effect extends (...args: infer Args) => void ? Args[1] : never;
 
-export type IEffect<T> = (action: NewAnyAction<T>, effects: EffectsCommandMap) => void;
+export type IEffect<T> = (action: NewAnyAction, effects: EffectsCommandMap) => void;
 
 export type IEffectWithType<T> = [IEffect<T>, EffectWithType[1]];
 
@@ -29,15 +29,15 @@ export interface SubscriptionAPI {
 
 export type Subscription = (api: SubscriptionAPI, done: Function) => void | Function;
 
-export interface IDefaultDvaModal<State> extends Omit<Model, CustomField> {
-  state?: Partial<State>;
-  effects?: EffectsMapObject<State>;
+export interface IDefaultDvaModal<G, F extends keyof G> extends Omit<Model, CustomField> {
+  state?: Partial<G[F]>;
+  effects?: EffectsMapObject<G[F]>;
   reducers?: {
-    [key: string]: (state: State, action: NewAnyAction<State>) => State;
+    [key: string]: <T>(state: T, action: NewAnyAction) => T;
   };
   subscriptions?: {
     [key: string]: Subscription,
   }
 };
 
-export type DvaModal<State> = IDefaultDvaModal<State>;
+export type DvaModal<G, F extends keyof G> = IDefaultDvaModal<G, F>;

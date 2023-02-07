@@ -8,14 +8,13 @@ export interface UserProps {
 const BASE_NAMESPACE = 'user';
 
 const initState = {
-  BASE_NAMESPACE,
   isLogin: false
 };
 
 type IState = typeof initState & UserProps;
 
 export default defineDvaModal<IState>({
-  namespace: `${BASE_NAMESPACE}Modal`,
+  namespace: BASE_NAMESPACE,
   state: initState,
   subscriptions: {
     setup({ dispatch, history }) {

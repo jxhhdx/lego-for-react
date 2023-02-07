@@ -30,7 +30,7 @@ const initState = {
 
 type IState = typeof initState & TemplatesProps & GlobalDataProps;
 export default defineDvaModal<IState>({
-  namespace: `${BASE_NAMESPACE}Modal`,
+  namespace: BASE_NAMESPACE,
   state: initState,
   subscriptions: {
     setup({ dispatch, history }) {
