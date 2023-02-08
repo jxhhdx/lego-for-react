@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Row, Col, Button, Avatar } from 'antd';
-import { Link } from 'dva/router';
+import { Link } from 'react-router-dom';
+
 import './index.less';
 
 const TemplateDetail: React.FC = () => {

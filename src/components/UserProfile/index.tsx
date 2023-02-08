@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Dropdown, Menu, message } from 'antd';
-import { Link } from 'dva/router';
+import { Link } from 'react-router-dom';
 import { connect } from 'dva';
 import { BaseProps, mapStateToProps } from '@/views/typing';
 import './index.less';

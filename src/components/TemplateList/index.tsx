@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Button, Card } from 'antd';
-import { Link } from 'dva/router';
+import { Link } from 'react-router-dom';
 import type { TemplateProps } from '@/models/types';
 import './index.less';
 
@@ -15,7 +15,7 @@ const TemplateList: React.FC<IProps> = (props) => {
       <Row gutter={16}>
         {list.map((item, index) => (
           <Col span={6} key={index} className="poster-item">
-            <Link to={{ name: 'template', params: { id: item.id }}}>
+            <Link to={`template/${item.id}`}>
               <Card
                 hoverable
                 cover={(
