@@ -19,7 +19,7 @@ const PropsTable: React.FC<PropsTableProps> = (props) => {
           eventName,
           events: {
             [eventName]: (e: any) => {
-              props.onChange({ key, value: afterTransform ? afterTransform(e) : e });
+              props?.onChange?.({ key, value: afterTransform ? afterTransform(e) : e });
             }
           }
         }

@@ -1,7 +1,7 @@
 
 export const defaultTextTemplates = [
   {
-    text: '大标题1',
+    text: '大标题',
     fontSize: '30px',
     fontWeight: 'bold',
     tag: 'h2'

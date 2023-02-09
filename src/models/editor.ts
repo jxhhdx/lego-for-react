@@ -45,10 +45,7 @@ export default defineDvaModal<GlobalDataProps, 'editor'>({
       yield put({ type: 'concat', payload: initState });
     },
     *addComponent({ payload }, { put, select }) {
-      const editor: GlobalDataProps['editor'] = yield select((state) => state.editor);
-      console.log('====================================');
-      console.log(editor);
-      console.log('====================================');
+      const { components }: GlobalDataProps['editor'] = yield select((state) => state.editor);
       const newComponent: ComponentData = {
         id: uuidv4(),
         name: 'l-text',
@@ -57,18 +54,34 @@ export default defineDvaModal<GlobalDataProps, 'editor'>({
       yield put({
         type: 'concat',
         payload: {
-          components: [newComponent]
+          components: [...components, newComponent]
         }
       })
     },
-    *setActive({ payload }, { put, select }) {
-      // state.currentElement = currentId
+    *setActive({ payload }, { put }) {
+      yield put({
+        type: 'concat',
+        payload: {
+          currentElement: payload
+        }
+      })
     },
-    *updateComponent({ payload }, { key, value }) {
-      // const updatedComponent = state.components.find((component) => component.id === state.currentElement)
-      // if (updatedComponent) {
-      //   updatedComponent.props[key as keyof TextComponentProps] = value
-      // }
+    *updateComponent({ payload }, { put, select }) {
+      const { components, currentElement }: GlobalDataProps['editor'] = yield select((state) => state.editor);
+      const updatedComponent = components.reduce((acc, component) => {
+        const newComponent = { ...component };
+        if (newComponent.id === currentElement) {
+          const { key, value } = payload
+          newComponent.props[key as keyof TextComponentProps] = value
+        }
+        return [...acc, newComponent]
+      }, [] as ComponentData[]);
+      yield put({
+        type: 'concat',
+        payload: {
+          components: updatedComponent
+        }
+      })
     }
   },
   reducers: {

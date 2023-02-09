@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRoutes, HashRouter } from 'react-router-dom';
+import { useRoutes, HashRouter as Router } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import 'antd/dist/reset.css';
@@ -33,13 +33,13 @@ function App(){
 }
 export default function RouterConfig(api?: RouterAPI) {
   return (
-    <HashRouter>
+    <Router>
       <ConfigProvider locale={zhCN}>
         <div className="app-container">
           <App />
         </div>
       </ConfigProvider>
-    </HashRouter>
+    </Router>
   );
 }
 

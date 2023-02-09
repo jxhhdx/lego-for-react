@@ -8,11 +8,11 @@ import './index.less';
 const UserProfile: React.FC<BaseProps> = (props) => {
   const { user, dispatch, history } = props;
   const login = () => {
-    dispatch({ type: 'login' });
+    dispatch({ type: 'user/login' });
     message.success('登录成功', 2);
   };
   const logout = () => {
-    dispatch({ type: 'logout' });
+    dispatch({ type: 'user/logout' });
     message.success('退出登录成功，2秒后跳转到首页', 2)
     setTimeout(() => {
       history.push('/');

@@ -1,3 +1,4 @@
+import React from 'react';
 import { TextComponentProps } from './defaultProps'
 export interface PropToForm {
   component: string;

@@ -13,6 +13,6 @@ export interface FormProps {
 }
 
 export type PropsTableProps = {
-  props: TextComponentProps
+  props: Partial<TextComponentProps>
   onChange: (param: { key: string; value: any }) => void
 };
