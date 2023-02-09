@@ -3,9 +3,12 @@ import type { Model } from 'dva';
 import './index.less';
 import router from './router';
 import models from './models';
+import { createBrowserHistory as createHistory }  from 'history';
 
 // 1. Initialize
-const app = dva();
+const app = dva({
+  history: createHistory()
+});
 
 // 2. Plugins
 // app.use({});

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRoutes, HashRouter as Router } from 'react-router-dom';
+import { useRoutes, BrowserRouter as Router } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import 'antd/dist/reset.css';

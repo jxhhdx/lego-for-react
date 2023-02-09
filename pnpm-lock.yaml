@@ -27,6 +27,7 @@ specifiers:
   eslint-import-resolver-alias: ^1.1.2
   eslint-plugin-react: ^7.32.2
   file-loader: ^6.2.0
+  history: ^5.3.0
   html-webpack-plugin: 4.5.2
   jest: ^26.6.3
   jest-environment-jsdom: ^26.6.2
@@ -54,6 +55,7 @@ specifiers:
 dependencies:
   antd: 5.1.7_wcqkhtmu7mswc6yz4uyexck3ty
   dva: 2.4.1_wcqkhtmu7mswc6yz4uyexck3ty
+  history: 5.3.0
   lodash: 4.17.21
   lodash-es: 4.17.21
   react: 16.14.0
