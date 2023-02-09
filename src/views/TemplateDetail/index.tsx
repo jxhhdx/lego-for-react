@@ -1,20 +1,32 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Row, Col, Button, Avatar } from 'antd';
-import { Link } from 'react-router-dom';
-
+import { Link, useParams } from 'react-router-dom';
+import { BaseProps, mapStateToProps } from '@/views/typing';
+import { TemplateProps } from '@/models/templates';
+import { connect } from 'dva';
 import './index.less';
 
-const TemplateDetail: React.FC = () => {
-  const [template] = useState({
+const TemplateDetail: React.FC<BaseProps> = (props) => {
+  
+  const [template, setTemplate] = useState<Partial<TemplateProps>>({
     title: '',
     author: '',
   });
   const container = useRef(null);
+  let params = useParams();
+
+  useEffect(() => {
+    const { data } = props.templates;
+    if (params.id) {
+      const template = data.find((item) => String(item.id) === params.id)
+      template && setTemplate(template);
+    }
+  }, [props.templates])
   return (
     <div className="work-detail-container">
       <Row justify="center" v-if="template">
         <Col span={8} className="cover-img">
-          <img src="template.coverImg" alt="" />
+          <img src={template.coverImg} alt="" />
         </Col>
         <Col span={8}>
           <h2>{template.title}</h2>
@@ -46,5 +58,4 @@ const TemplateDetail: React.FC = () => {
     </div>
   );
 };
-
-export default TemplateDetail;
+export default connect(mapStateToProps)(TemplateDetail);
