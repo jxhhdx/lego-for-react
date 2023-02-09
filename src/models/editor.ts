@@ -49,7 +49,7 @@ export default defineDvaModal<GlobalDataProps, 'editor'>({
       const newComponent: ComponentData = {
         id: uuidv4(),
         name: 'l-text',
-        ...payload
+        props: { ...payload }
       }
       yield put({
         type: 'concat',

@@ -1,10 +1,11 @@
-import React, { useMemo, createElement } from 'react';
+import React, { useMemo, createElement, useState, useEffect } from 'react';
 import { Layout } from 'antd';
 import './index.less';
 import { BaseProps, mapStateToProps } from '@/views/typing';
 import ComponentsList from '@/components/ComponentsList';
 import EditWrapper from '@/components/EditWrapper';
 import PropsTable from '@/components/PropsTable';
+import createComponent from '@/utils/createComponent';
 import { connect } from 'dva';
 import { defaultTextTemplates } from '@/defaultTemplates';
 
@@ -12,6 +13,7 @@ const { Content, Sider } = Layout;
 
 const Editor: React.FC<BaseProps> = (props) => {
   const { editor, dispatch } = props;
+  const [currentElement, setCurrentElement] = useState<BaseProps['editor']['components'][0]>()
   const addItem = (props: any) => {
     dispatch({
       type: "editor/addComponent",
@@ -25,13 +27,18 @@ const Editor: React.FC<BaseProps> = (props) => {
     })
   }
   const handleChange = (e: any) => {
+    console.log(e)
     dispatch({
       type: "editor/updateComponent",
       payload: e
     })
   } 
-  const currentElement = useMemo(() => {
-    return editor.components.find((component) => component.id === editor.currentElement)
+  const getCurrentActiveElement = (components: BaseProps['editor']['components']) => {
+    return components.find((component) => component.id === editor.currentElement)
+  }
+  useEffect(() => {
+    const element = getCurrentActiveElement(editor.components);
+    setCurrentElement(element);
   }, [editor])
   return (
     <div className="editor-container">
@@ -53,7 +60,7 @@ const Editor: React.FC<BaseProps> = (props) => {
                   key={index}
                   active={component.id === (currentElement && currentElement.id)}
                 >
-                  {createElement(
+                  {createComponent(
                     component.name,
                     { ...component.props }
                   )}
@@ -71,7 +78,7 @@ const Editor: React.FC<BaseProps> = (props) => {
             />
           )}
           <pre>
-            {currentElement && currentElement.props}
+            {JSON.stringify(currentElement && currentElement.props, null, 2)}
           </pre>
         </Sider>
       </Layout>

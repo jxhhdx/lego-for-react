@@ -1,13 +1,15 @@
-import React, { useMemo, createElement } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { PropsTableProps, FormProps } from "./types";
 import { reduce } from 'lodash';
 import { TextComponentProps } from '@/defaultProps';
-import { mapPropsToForms } from '@/propsMap'
+import { mapPropsToForms } from '@/propsMap';
+import createComponent from '@/utils/createComponent';
 import './index.less';
 
 const PropsTable: React.FC<PropsTableProps> = (props) => {
-  const finalProps = useMemo(() => {
-    return reduce(props.props, (result, value, key) => {
+  const { props: innerProps } = props
+  const formatProps = (propsProps: PropsTableProps['props']) => {
+    return reduce(propsProps, (result, value, key) => {
       const newKey = key as keyof TextComponentProps
       const item = mapPropsToForms[newKey]
       if (item) {
@@ -27,7 +29,12 @@ const PropsTable: React.FC<PropsTableProps> = (props) => {
       }
       return result;
     }, {} as { [key: string]: FormProps });
-  }, [props.props]);
+  }
+  const [finalProps, setFinalProps] = useState<{ [key: string]: FormProps; }>({});
+  useEffect(() => {
+    console.log('asd')
+    setFinalProps(formatProps(props.props));
+  }, [innerProps]);
   return (
     <div className="props-table">
       {Object.entries(finalProps).map(([key, value]) => (
@@ -37,23 +44,26 @@ const PropsTable: React.FC<PropsTableProps> = (props) => {
         >
           {value.text && <span className="label">{value.text}</span>}
           <div className="prop-component">
-            {createElement(
+            {createComponent(
               value.component,
               {
+                key: key + '_level1',
                 [value.valueProp]: value.value,
                 ...value.extraProps,
                 ...value.events,
               },
-              value.options 
-                ? value.options.map((option) => {
-                    return value.subComponent && createElement(
-                      value.subComponent, 
-                      {
-                        value: option.value
-                      },
-                      option.text
-                    )
-                  }) 
+              value.options
+                ? value.options.map((option, index) => {
+                  return value.subComponent && createComponent(
+                    value.subComponent,
+                    {
+                      key: key + '_level2' + index,
+                      'data-id': '123333',
+                      value: option.value
+                    },
+                    option.text
+                  )
+                })
                 : undefined
             )}
           </div>

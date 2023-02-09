@@ -17,7 +17,7 @@ const EditWrapper: React.FC<EditWrapperProps> = (props) => {
   };
   return (
     <div
-      className={`${active ? 'active' : ''}`}
+      className={`edit-wrapper${active ? ' active' : ''}`}
       onClick={onItemClick}
     >
       {children}
