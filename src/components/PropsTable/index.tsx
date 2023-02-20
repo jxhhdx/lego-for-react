@@ -13,7 +13,7 @@ const PropsTable: React.FC<PropsTableProps> = (props) => {
       const newKey = key as keyof TextComponentProps
       const item = mapPropsToForms[newKey]
       if (item) {
-        const { valueProp = 'value', eventName = 'onChange', initalTransform, afterTransform } = item;
+        const { valueProp = 'defaultValue', eventName = 'onChange', initalTransform, afterTransform } = item;
         const newItem: FormProps = {
           ...item,
           value: initalTransform ? initalTransform(value) : value,
@@ -32,7 +32,6 @@ const PropsTable: React.FC<PropsTableProps> = (props) => {
   }
   const [finalProps, setFinalProps] = useState<{ [key: string]: FormProps; }>({});
   useEffect(() => {
-    console.log('asd')
     setFinalProps(formatProps(props.props));
   }, [innerProps]);
   return (
